@@ -60,6 +60,15 @@
         }
       });
 
+      password.addEventListener('input', (e) => {
+        passwordValue = e.target.value;
+        console.log(passwordValue);
+        if (password.validity.patternMismatch) {
+          password.setCustomValidity('Please enter a password of at least 5 alphanumeric characters');
+        } else {
+          password.setCustomValidity('');
+        }
+      });
     </script>
   </body>
 </html>
