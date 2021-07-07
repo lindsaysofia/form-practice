@@ -23,9 +23,9 @@
       <label for="zip">Zip Code:</label>
       <input type="text" pattern="\d{5}" id="zip" required>
       <label for="password">Password:</label>
-      <input id="password" type="text" pattern="[a-zA-Z0-9]{5,}" required>
+      <input id="password" type="password" pattern="[a-zA-Z0-9]{5,}" required>
       <label for="password-confirmation">Password Confirmation</label>
-      <input id="password-confirmation" type="text" required>
+      <input id="password-confirmation" type="password" required>
       <button>Submit</button>
     </form>
     <script>
@@ -39,6 +39,24 @@
       email.addEventListener('input', (e) => {
         if (email.validity.typeMismatch) {
           email.setCustomValidity('Please enter a valid email address');
+        } else {
+          email.setCustomValidity('');
+        }
+      });
+
+      country.addEventListener('input', (e) => {
+        if (country.validity.patternMismatch) {
+          country.setCustomValidity('For the purposes of this form, please enter "United States"');
+        } else {
+          country.setCustomValidity('');
+        }
+      });
+
+      zipCode.addEventListener('input', (e) => {
+        if (zipCode.validity.patternMismatch) {
+          zipCode.setCustomValidity('Please enter a 5-digit number');
+        } else {
+          zipCode.setCustomValidity('');
         }
       });
 
