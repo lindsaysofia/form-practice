@@ -34,6 +34,7 @@
       const zipCode = document.querySelector('#zip');
       const password = document.querySelector('#password');
       const passwordConfirmation = document.querySelector('#password-confirmation');
+      const form = document.querySelector('form');
       let passwordValue;
 
       email.addEventListener('input', (e) => {
@@ -62,12 +63,26 @@
 
       password.addEventListener('input', (e) => {
         passwordValue = e.target.value;
-        console.log(passwordValue);
+        passwordConfirmation.pattern = passwordValue;
         if (password.validity.patternMismatch) {
           password.setCustomValidity('Please enter a password of at least 5 alphanumeric characters');
         } else {
           password.setCustomValidity('');
         }
+      });
+
+      passwordConfirmation.addEventListener('input', (e) => {
+        if (passwordConfirmation.validity.patternMismatch) {
+          passwordConfirmation.setCustomValidity('Passwords do not match');
+        } else {
+          passwordConfirmation.setCustomValidity('');
+        }
+      });
+    
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        document.body.innerHTML = '';
+        document.body.innerHTML = '<h1>HIGH FIVE!</h1>';
       });
     </script>
   </body>
